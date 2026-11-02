@@ -28,6 +28,7 @@ def main():
         action="store_true",
         help="show only completed tasks"
     )
+    list_parser.add_argument("--sort", action="store_true", help="sort tasks alphabetically by title")
 
     export_parser = sub.add_parser("export")
     export_parser.add_argument(
@@ -46,10 +47,9 @@ def main():
         tasks = list_tasks()
         if args.done:
             tasks = [t for t in tasks if t.get("done")]
+        if args.sort:
+            tasks = sorted(tasks, key=lambda t: t["title"])
         print_tasks(tasks)
-    elif args.command == "export":
-        if args.csv:
-            export_csv(list_tasks())
 
     elif args.command == "export":
         if args.csv:
