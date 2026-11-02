@@ -47,6 +47,9 @@ def main():
         if args.done:
             tasks = [t for t in tasks if t.get("done")]
         print_tasks(tasks)
+    elif args.command == "export":
+        if args.csv:
+            export_csv(list_tasks())
 
     elif args.command == "export":
         if args.csv:
