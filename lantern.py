@@ -3,6 +3,9 @@ import argparse
 from tasks import add_task, list_tasks
 
 def print_tasks(tasks):
+    if not tasks:
+        print("No tasks yet.")
+        return
     for task in tasks:
         print(f"- {task['title']}")
 
